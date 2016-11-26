@@ -1,0 +1,13 @@
+#!/bin/sh
+# generate cscope file for cscope
+PROJECT=$(pwd)
+find $PROJECT       \
+    find  $PROJECT                                                                \
+	-path "$PROJECT/arch/*" ! -path "$LNX/arch/i386*" -prune -o               \
+	-path "$PROJECT/include/asm-*" ! -path "$LNX/include/asm-i386*" -prune -o \
+	-path "$PROJECT/tmp*" -prune -o                                           \
+	-path "$PROJECT/Documentation*" -prune -o                                 \
+	-path "$PROJECT/scripts*" -prune -o                                       \
+	-path "$PROJECT/drivers*" -prune -o                                       \
+        -name "*.[chxsS]" -print > cscope.files
+time cscope -Rbqk -i cscope.files

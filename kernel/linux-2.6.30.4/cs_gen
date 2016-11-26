@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "generate cscope file for cscope..."
+PROJECT=$(pwd)
+time find  $PROJECT                                                                \
+	-path "$PROJECT/tmp*" -prune -o                                           \
+	-path "$PROJECT/Documentation*" -prune -o                                 \
+	-path "$PROJECT/scripts*" -prune -o                                       \
+        -name "*.[chxsS]" -print > cscope.files
+cscope -Rbqk -i cscope.files
+echo "done!"
+exit 0

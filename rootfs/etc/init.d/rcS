@@ -1,0 +1,18 @@
+#!/bin/sh
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+runlevel=S
+prevlevel=N
+umask 022
+export PATH runlevel prevlevel
+
+#
+#    Trap CTRL-C &c only in this shell so we can interrupt subprocesses.
+#
+/bin/mount -t proc none /proc
+/bin/mount -t tmpfs none /tmp
+/bin/mount -t tmpfs none /var
+
+/bin/mkdir -p /var/log
+
+/bin/hostname -F /etc/sysconfig/HOSTNAME

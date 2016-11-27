@@ -16,11 +16,11 @@ all:
 
 clean:
 	$(foreach N,$(dirs),make -C $(N) clean &&) :
-	rm $(OUTPUT_DIR)/*
+	rm $(OUTPUT_DIR)/* -rf
 
 distclean: 
 	$(foreach N,$(dirs),make -C $(N) distclean &&) :
-	rm $(OUTPUT_DIR)/*
+	rm $(OUTPUT_DIR)/* -rf
 
 boot:
 	make -C $(BOOTS_DIR)
